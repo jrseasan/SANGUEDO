@@ -1,0 +1,155 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<locale.h>
+#define MAX 10000
+
+int cadastroVisu(int cv);
+int media(int x[]);
+int menu(int x);
+int opcao(int g);
+int cadastro(int cad);
+int TAM;
+struct alunos
+{
+	char nome[40];
+	int matricula, idade, tel, cpf, cep;
+};
+
+int main()
+{
+	setlocale(LC_ALL, "Portuguese");
+	int y;
+	menu(y);
+	printf("\n\n\n");
+	system("pause");
+}
+int media(int x[])
+{
+	int num1=0, num2=0, cont=0, cont2=0, h;
+	float md=0;
+	printf("\nEntre os valores inteiros no vetor: \n\n");
+	for(int i=1;i<=TAM;i++)
+	{
+		printf("%d - ", i);
+		scanf(" %d", &x[i]);
+		md = x[i] + md;
+		if(x[i]>6)
+		{
+			num1=num1+x[i];
+			cont++;
+		}
+		if(x[i]<=6)
+		{
+			num2=num2+x[i];
+			cont2++;
+		}
+	}
+	md = md / TAM;
+	printf("\nMédia dos números:\t%.1f\n", md);
+	printf("\n\nQuantidade de números maiores ou iguais a 6:\t%d", cont);
+	printf("\nEstes são:\n");
+	for(int i=1;i<=TAM;i++)
+	{
+		if(x[i]>=6)
+		{
+			printf("\n\t%d", x[i]);
+		}
+	}
+	printf("\n\nQuantidade de números menores que 6:\t%d", cont2);
+	printf("\nEstes são:\n");
+	for(int i=1;i<=TAM;i++)
+	{
+		if(x[i]<6)
+		{
+			printf("\n\t%d", x[i]);
+		}	
+	}
+	opcao(h);
+}
+int menu(int x)
+{
+	int y[TAM];
+	system("cls");	
+	printf("\n\n******************************* Escolha uma opção para continuar *******************************");
+	printf("\n\n1 - Entrar uma série de nºs para calculo\n2 - Sair do programa\n3 - Cadastros\n\nSua escolha é:\t");
+	scanf(" %d", &x);
+	fflush(stdin);
+	if(x==1)
+	{
+		printf("\nEntre com o tamanho do vetor:\t");
+		scanf(" %d", &TAM);
+		media(y);
+		fflush(stdin);
+	}
+	if(x==2)
+	{
+		printf("\nVolte sempre!");
+		return -1;
+		fflush(stdin);
+	}
+	if(x==3)
+	{
+		cadastro(x);
+		fflush(stdin);
+	}
+	if(x!=1,2,3)
+	{
+		printf("\nEste não é um número válido, por favor tente novamente\n");
+		return (menu(x));
+		fflush(stdin);
+	}
+}
+int opcao(int g)
+{
+	int k, h, x;
+	printf("\n\n\n***********Escolha a opção que deseja*********** \n\n\n1 - Para voltar ao menu principal\n2 - Para sair do programa\nSua escolha:\t");
+	scanf(" %d", &h);
+	if(h==1)
+	{
+		return (menu(k));
+	}
+	if(h==2)
+	{
+		printf("\nVolte sempre!");
+		exit(0);
+	}
+	if(h!=1,2)
+	{
+		printf("\nEsta opção não é válida, tente de novo:\t");
+		return (opcao(x));
+	}
+}
+int cadastro(int cad)
+{
+	int x, t;
+	for (int i=1;i<=TAM; i++)
+	{
+	struct alunos aluno[i];
+	printf("\nNome do aluno:\t");
+	fgets(aluno[i].nome, 40, stdin);
+	printf("\nIdade do aluno:\t");
+	scanf("%d", &aluno[i].idade);
+	printf("\nTelefone do aluno:\t");
+	scanf("%d", &aluno[i].tel);
+	printf("\nInforme seu CPF:\t");
+	scanf("%d", &aluno[i].cpf);
+	printf("\nInforme seu CEP:\t");
+	scanf("%d", &aluno[i].cep);
+	printf("\n\n");
+	printf("\n*_*_*_*Matrícula gerada com sucesso!*_*_*_*\nSeu nº de Matrícula é:\t20160000%d", i);
+	fflush(stdin);
+	opcao(t);
+	i++;
+	}
+}
+int cadastroVisu(int cv)
+{
+	int t, i;
+	struct alunos aluno[i];
+	printf("\n++++++++++++++++++ Cadastro de %s ++++++++++++++++++\n\n\n", aluno[cv].nome);
+	printf("\nIdade:\t%d", aluno[cv].idade);
+	printf("\nTelefone:\t%d", aluno[cv].tel);
+	printf("\nCPF:\t%d", aluno[cv].cpf);
+	printf("\nCEP:\t%d", aluno[cv].cep);
+	opcao(t);
+}
